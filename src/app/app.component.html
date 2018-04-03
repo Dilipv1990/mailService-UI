@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-dark mb-4">
+  <a class="navbar-brand" href="#">MyMail</a>
+</nav>
+<form [formGroup]="mailForm" class="row  justify-content-center" (submit)="submit()">
+  <div class="container-fluid">
+    <mat-form-field class="col-xs-12 col-sm-6 mt-4">
+      <input matInput placeholder="From" formControlName="from" [errorStateMatcher]="matcher" #from>
+      <mat-error *ngIf="mailForm.controls['from'].hasError('email') && !mailForm.controls['from'].hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="mailForm.controls['from'].hasError('required')">
+        Please enter an email address
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="col-xs-12 col-sm-6">
+      <input matInput placeholder="To" formControlName="to" [errorStateMatcher]="matcher" #to>
+      <mat-error *ngIf="mailForm.controls['to'].hasError('pattern') && !mailForm.controls['to'].hasError('required')">
+        Please enter a list of comma separated valid email address
+      </mat-error>
+      <mat-error *ngIf="mailForm.controls['to'].hasError('required')">
+        Please enter atleast one email address to continue
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="col-xs-12 col-sm-6">
+      <input matInput placeholder="Cc" formControlName="cc" [errorStateMatcher]="matcher" #cc>
+      <mat-error *ngIf="mailForm.controls['cc'].hasError('pattern')">
+         Please enter a list of comma separated valid email address
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="col-xs-12 col-sm-6">
+      <input matInput placeholder="Bcc" formControlName="bcc" [errorStateMatcher]="matcher" #bcc>
+      <mat-error *ngIf="mailForm.controls['bcc'].hasError('pattern')">
+         Please enter a list of comma separated valid email address
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="col-xs-12 col-sm-6">
+      <input matInput placeholder="Subject" formControlName="subject" [errorStateMatcher]="matcher" #subject>
+    </mat-form-field>
+    <br>
+    <mat-form-field  class="col-xs-12 col-sm-6 mb-4">
+      <textarea matInput placeholder="Mail Body" formControlName="body" [errorStateMatcher]="matcher" #body></textarea>
+    </mat-form-field>
+    <br>
+    <button mat-button mat-raised-button color="primary" type="submit"  class="col-xs-10 col-sm-4 mt-4">Send</button>
+  </div>
+</form>
